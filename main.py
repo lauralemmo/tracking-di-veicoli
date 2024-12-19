@@ -9,10 +9,6 @@ l1 = 10
 l2 = 6
 h = 2
 
-position = [x, y, z]
-orientation = o
-shape = [l1, l2, h]
-
 parametriIniziali = [x, y, z, o, l1, l2, h]
 
 

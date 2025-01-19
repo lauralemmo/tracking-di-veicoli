@@ -1,3 +1,5 @@
+import numpy as np
+
 from macchina import BoundingBox
 import pandas as pd
 
@@ -47,7 +49,7 @@ l1 = lunghezza * 2
 l2 = larghezza * 2
 h = altezza * 2
 
-parametriInizialiA = [x, y, z, o, l1, l2, h]
+parametriInizialiA = np.array([x, y, z, o, l1, l2, h])
 
 
 box1 = BoundingBox('box1')
@@ -57,7 +59,8 @@ box1 = BoundingBox('box1')
 
 
 print("ottimizzazione con point cloud data da un solo sensore")
-box1.ottimizzazione(parametriInizialiA, tabella1A)
+print("parametri iniziali: ", parametriInizialiA)
+box1.ottimizzazione(parametriInizialiA, tabella1A, i)
 
 
 #print(tabella1A.head())
@@ -121,11 +124,12 @@ l1 = lunghezza * 2
 l2 = larghezza * 2
 h = altezza * 2
 
-parametriInizialiB = [x, y, z, o, l1, l2, h]
+parametriInizialiB = np.array([x, y, z, o, l1, l2, h])
 
 
 print("ottimizzazione con point cloud data da n sensori")
-box1.ottimizzazione(parametriInizialiB, tabella1B)
+print("parametri iniziali: ", parametriInizialiB)
+box1.ottimizzazione(parametriInizialiB, tabella1B, i)
 
 
 

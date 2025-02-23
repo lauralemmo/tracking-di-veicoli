@@ -1,7 +1,7 @@
 import numpy as np
 from scipy.optimize import minimize
 
-class BoundingBox:
+class BoundingBox2:
     def __init__(self, name):
         self.name = name
 
@@ -22,13 +22,9 @@ class BoundingBox:
 
         y2 = rMatrix @ y1
 
-        dx = max(abs(y2[0]) - l / 2, 0)
-        dy = max(abs(y2[1]) - w / 2, 0)
-        dz = max(abs(y2[2]) - h / 2, 0)
-
-        #dx = (abs(abs(y2[0]) - l / 2))**2
-        #dy = (abs(abs(y2[1]) - w / 2))**2
-        #dz = (abs(abs(y2[2]) - h / 2))**2
+        dx = (abs(abs(y2[0]) - l / 2))**2
+        dy = (abs(abs(y2[1]) - w / 2))**2
+        dz = (abs(abs(y2[2]) - h / 2))**2
 
         distance = np.sqrt(dx**2 + dy**2 + dz**2)
 
@@ -54,13 +50,13 @@ class BoundingBox:
         volume = s[0] * s[1] * s[2] * r
 
         print("distanza: ", sum)
-        print("sommatoria: ", (sum+volume))
-        return (sum + volume)
+        print("sommatoria: ", sum+volume)
+        return sum + volume
 
 
 
 
-    def ottimizzazione(self, parametriDaOttimizzare, tabella, i):
+    def ottimizzazione(self, parametriDaOttimizzare, tabella):
         result = minimize(self.sommatoria, parametriDaOttimizzare, args=(tabella,), method='L-BFGS-B')
 
         print("valore funzione obiettivo: ", result.fun)

@@ -60,9 +60,9 @@ class BoundingBox:
 
 
 
-    def ottimizzazione(self, parametriDaOttimizzare, tabella):
+    def ottimizzazione(self, parametriDaOttimizzare, tabella, i):
         result = minimize(self.sommatoria, parametriDaOttimizzare, args=(tabella,), method='L-BFGS-B')
 
         print("valore funzione obiettivo: ", result.fun)
-        #print("distanza media da ogni punto: ", result.fun / i)
+        print("distanza media da ogni punto: ", result.fun / i)
         print("Valori ottimizzati:", result.x)

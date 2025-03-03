@@ -26,10 +26,6 @@ class BoundingBox:
         dy = max(abs(y2[1]) - w / 2, 0)
         dz = max(abs(y2[2]) - h / 2, 0)
 
-        #dx = (abs(abs(y2[0]) - l / 2))**2
-        #dy = (abs(abs(y2[1]) - w / 2))**2
-        #dz = (abs(abs(y2[2]) - h / 2))**2
-
         distance = np.sqrt(dx**2 + dy**2 + dz**2)
 
         return distance

@@ -62,6 +62,7 @@ box2 = BoundingBox2('box2')
 print("ottimizzazione con point cloud data da un solo sensore")
 print("parametri iniziali: ", parametriInizialiA)
 box1.ottimizzazione(parametriInizialiA, tabella1A, i)
+print("\n \n \n")
 box2.ottimizzazione(parametriInizialiA, tabella1A, i)
 
 
@@ -132,6 +133,7 @@ parametriInizialiB = np.array([x, y, z, o, l1, l2, h])
 print("ottimizzazione con point cloud data da n sensori")
 print("parametri iniziali: ", parametriInizialiB)
 box1.ottimizzazione(parametriInizialiB, tabella1B, i)
+print("\n \n \n")
 box2.ottimizzazione(parametriInizialiB, tabella1B, i)
 
 

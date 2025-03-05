@@ -1,11 +1,13 @@
 import numpy as np
+import open3d as o3d
 
 from distanceBoundingBox import BoundingBox
 from distanceBoundingBox2 import BoundingBox2
+from visualization import visualize2
 import pandas as pd
 
 
-#QUESTO è TUTTO E SOLO PER IL TEMPO t=1, QUINDI LA PRIMA TABELLA DELLE 50 !!!!!!!!!!!!!
+#QUESTO è TUTTO E SOLO PER IL TEMPO t=1, QUINDI LA PRIMA TABELLA DELLE 50 !!!
 
 
 #ottimizzazione con point cloud data da un solo sensore
@@ -53,7 +55,7 @@ h = altezza * 2
 parametriInizialiA = np.array([x, y, z, o, l1, l2, h])
 
 
-box1 = BoundingBox('box1')
+#box1 = BoundingBox('box1')
 box2 = BoundingBox2('box2')
 
 
@@ -61,7 +63,7 @@ box2 = BoundingBox2('box2')
 
 print("ottimizzazione con point cloud data da un solo sensore")
 print("parametri iniziali: ", parametriInizialiA)
-box1.ottimizzazione(parametriInizialiA, tabella1A, i)
+#box1.ottimizzazione(parametriInizialiA, tabella1A, i)
 print("\n \n \n")
 box2.ottimizzazione(parametriInizialiA, tabella1A, i)
 
@@ -89,7 +91,7 @@ print("\n \n \n")
 
 #ottimizzazione con point cloud data da n sensori
 
-tabella1B = pd.read_csv("PointCloud_nSensorI/PointCloud_traj_argo_50_AV_MercedesGLS580_scans50_s7_h2_5_10_v3_vehicle_time_1.csv")
+tabella1B = pd.read_csv("PointCloud_nSensori/PointCloud_traj_argo_50_AV_MercedesGLS580_scans50_s7_h2_5_10_v3_vehicle_time_1.csv")
 coordinata_x = 0
 coordinata_y = 0
 coordinata_z = 0
@@ -132,12 +134,14 @@ parametriInizialiB = np.array([x, y, z, o, l1, l2, h])
 
 print("ottimizzazione con point cloud data da n sensori")
 print("parametri iniziali: ", parametriInizialiB)
-box1.ottimizzazione(parametriInizialiB, tabella1B, i)
+#box1.ottimizzazione(parametriInizialiB, tabella1B, i)
 print("\n \n \n")
 box2.ottimizzazione(parametriInizialiB, tabella1B, i)
 
 
 
+csv_path = "PointCloud_1Sensore/PointCloud_traj_argo_50_AV_MercedesGLS580_scans50_s7_h2_5_10_vehicle_time_1.csv"
+visualize2(csv_path, parametriInizialiA)
 
-
-#QUA FARò PER GLI ALTRI TEMPI, DA 2 A 50
+csv_path = "PointCloud_nSensori/PointCloud_traj_argo_50_AV_MercedesGLS580_scans50_s7_h2_5_10_v3_vehicle_time_1.csv"
+visualize2(csv_path, parametriInizialiB)

@@ -3,7 +3,7 @@ import open3d as o3d
 
 from distanceBoundingBox import BoundingBox
 from distanceBoundingBox2 import BoundingBox2
-from visualization import visualize2
+from visualization import visualize2    #QUI
 import pandas as pd
 
 
@@ -55,7 +55,7 @@ h = altezza * 2
 parametriInizialiA = np.array([x, y, z, o, l1, l2, h])
 
 
-#box1 = BoundingBox('box1')
+box1 = BoundingBox('box1')
 box2 = BoundingBox2('box2')
 
 
@@ -63,23 +63,9 @@ box2 = BoundingBox2('box2')
 
 print("ottimizzazione con point cloud data da un solo sensore")
 print("parametri iniziali: ", parametriInizialiA)
-#box1.ottimizzazione(parametriInizialiA, tabella1A, i)
+box1.ottimizzazione(parametriInizialiA, tabella1A, i)
 print("\n \n \n")
 box2.ottimizzazione(parametriInizialiA, tabella1A, i)
-
-
-#print(tabella1A.head())
-#
-# prima_riga = tabella1A.iloc[0]
-# primaRigaArray = np.array(prima_riga)
-# box1.distanza(primaRigaArray, position, orientation, shape)
-#
-# seconda_riga = tabella1A.iloc[1]
-# secondaRigaArray = np.array(seconda_riga)
-# box1.distanza(secondaRigaArray, position, orientation, shape)
-#
-# box1.sommatoria(parametriIniziali, tabella1A)
-
 
 
 
@@ -134,14 +120,14 @@ parametriInizialiB = np.array([x, y, z, o, l1, l2, h])
 
 print("ottimizzazione con point cloud data da n sensori")
 print("parametri iniziali: ", parametriInizialiB)
-#box1.ottimizzazione(parametriInizialiB, tabella1B, i)
+box1.ottimizzazione(parametriInizialiB, tabella1B, i)
 print("\n \n \n")
 box2.ottimizzazione(parametriInizialiB, tabella1B, i)
 
 
 
 csv_path = "PointCloud_1Sensore/PointCloud_traj_argo_50_AV_MercedesGLS580_scans50_s7_h2_5_10_vehicle_time_1.csv"
-visualize2(csv_path, parametriInizialiA)
+visualize2(csv_path, parametriInizialiA)   #QUI
 
 csv_path = "PointCloud_nSensori/PointCloud_traj_argo_50_AV_MercedesGLS580_scans50_s7_h2_5_10_v3_vehicle_time_1.csv"
-visualize2(csv_path, parametriInizialiB)
+visualize2(csv_path, parametriInizialiB)    #QUI

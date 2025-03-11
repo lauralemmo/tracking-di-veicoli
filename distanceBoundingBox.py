@@ -46,7 +46,7 @@ class BoundingBox:
             point = (row['x'], row['y'], row['z'])
             sum += self.distanza(point, p, o, s)
 
-        r = 1
+        r = 0.7
         volume = s[0] * s[1] * s[2] * r
 
         print("distanza: ", sum)
@@ -57,7 +57,7 @@ class BoundingBox:
 
 
     def ottimizzazione(self, parametriDaOttimizzare, tabella, i):
-        result = minimize(self.sommatoria, parametriDaOttimizzare, args=(tabella,), method='L-BFGS-B')
+        result = minimize(self.sommatoria, parametriDaOttimizzare, args=(tabella,), method='L-BFGS-B', options={'ftol': 1e-3, 'gtol': 1e-3, 'maxiter': 300, 'maxfun': 300})
 
         print("valore funzione obiettivo: ", result.fun)
         print("distanza media da ogni punto: ", result.fun / i)

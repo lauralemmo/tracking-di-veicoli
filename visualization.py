@@ -1,8 +1,8 @@
-#import open3d as o3d
-#import numpy as np
-#import pandas as pd
-
-
+# import open3d as o3d
+# import numpy as np
+# import pandas as pd
+#
+#
 # def visualize(csv_file):
 #     # Caricare il file CSV
 #     df = pd.read_csv(csv_file)
@@ -12,7 +12,7 @@
 #
 #     # Assumiamo che il CSV abbia tre colonne: "x", "y", "z"
 #     points = df[["x", "y", "z"]].to_numpy()
-#
+#     print(points)
 #     # Creare una nuvola di punti
 #     pcd = o3d.geometry.PointCloud()
 #     pcd.points = o3d.utility.Vector3dVector(points)

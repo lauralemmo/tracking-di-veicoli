@@ -30,10 +30,31 @@ import numpy as np
 from mpl_toolkits.mplot3d.art3d import Poly3DCollection
 from scipy.spatial.transform import Rotation as R
 
+def set_axes_equal(ax):
+    # permette di visualizzare il plot con le proporzioni corrette
+    x_limits = ax.get_xlim()
+    y_limits = ax.get_ylim()
+    z_limits = ax.get_zlim()
+
+    x_range = x_limits[1] - x_limits[0]
+    y_range = y_limits[1] - y_limits[0]
+    z_range = z_limits[1] - z_limits[0]
+    max_range = max(x_range, y_range, z_range) / 2.0
+
+    mid_x = np.mean(x_limits)
+    mid_y = np.mean(y_limits)
+    mid_z = np.mean(z_limits)
+
+    ax.set_xlim(mid_x - max_range, mid_x + max_range)
+    ax.set_ylim(mid_y - max_range, mid_y + max_range)
+    ax.set_zlim(mid_z - max_range, mid_z + max_range)
+
+
+
 def visualize2(csv_file, parametri):
 
     # Caricamento dati
-    df = pd.read_csv(csv_file)  # Assumi che il file contenga colonne x, y, z
+    df = pd.read_csv(csv_file)
 
     # Creazione del parallelepipedo unitario centrato nell'origine
     unit_cube = np.array([
@@ -64,8 +85,11 @@ def visualize2(csv_file, parametri):
     fig = plt.figure(figsize=(8, 6))
     ax = fig.add_subplot(111, projection='3d')
 
+    #ax.set_box_aspect([1, 1, 1])
+
     # Plot dei punti della tabella
-    ax.scatter(df['x'], df['y'], df['z'], c='b', marker='o', label="Punti")
+    #ax.scatter(df['x'], df['y'], df['z'], c='b', marker='o', label="Punti")
+    ax.scatter(df['x'], df['y'], df['z'], c=df['z'], cmap='rainbow', marker='o', label="Punti")
 
     # Plot del parallelepipedo
     ax.add_collection3d(Poly3DCollection(faces, facecolors='cyan', edgecolors='k', alpha=0.3))
@@ -74,6 +98,8 @@ def visualize2(csv_file, parametri):
     ax.set_xlabel('X')
     ax.set_ylabel('Y')
     ax.set_zlabel('Z')
+
+    set_axes_equal(ax)
 
     plt.legend()
     plt.show()

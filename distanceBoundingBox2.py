@@ -26,7 +26,7 @@ class BoundingBox2:
         dy = (abs(abs(y2[1]) - w / 2))**2
         dz = (abs(abs(y2[2]) - h / 2))**2
 
-        distance = np.sqrt(dx**2 + dy**2 + dz**2)
+        distance = (dx + dy + dz)
 
         return distance
 
@@ -54,8 +54,20 @@ class BoundingBox2:
 
 
     def ottimizzazione(self, parametriDaOttimizzare, tabella, i):
-        result = minimize(self.sommatoria, parametriDaOttimizzare, args=(tabella,), method='L-BFGS-B', options={'ftol': 1e-3, 'gtol': 1e-3, 'maxiter': 300, 'maxfun': 300})
+        bounds = [
+            (np.nanmin(tabella['x']), np.nanmax(tabella['x'])),  # Limiti posizione X
+            (np.nanmin(tabella['y']), np.nanmax(tabella['y'])),  # Limiti posizione Y
+            (np.nanmin(tabella['z']), np.nanmax(tabella['z'])),  # Limiti posizione Z
+            (-np.pi, np.pi),  # Limiti angolo di rotazione
+            (0.1, np.nanmax(tabella['x']) - np.nanmin(tabella['x'])),  # Lunghezza
+            (0.1, np.nanmax(tabella['y']) - np.nanmin(tabella['y'])),  # Larghezza
+            (0.1, np.nanmax(tabella['z']) - np.nanmin(tabella['z']))  # Altezza
+        ]
+        print("bounds = ", bounds)
+        result = minimize(self.sommatoria, parametriDaOttimizzare, args=(tabella,), method='L-BFGS-B', bounds=bounds, options={'ftol': 1e-3, 'gtol': 1e-3, 'maxiter': 200, 'maxfun': 200})
 
         print("valore funzione obiettivo: ", result.fun)
         print("distanza media da ogni punto: ", result.fun / i)
         print("Valori ottimizzati:", result.x)
+
+        return result.x

@@ -22,11 +22,18 @@ class BoundingBox2:
 
         y2 = rMatrix @ y1
 
-        dx = (abs(abs(y2[0]) - l / 2))**2
-        dy = (abs(abs(y2[1]) - w / 2))**2
-        dz = (abs(abs(y2[2]) - h / 2))**2
+        dx = abs(y2[0]) - l / 2
+        dy = abs(y2[1]) - w / 2
+        dz = abs(y2[2]) - h / 2
 
-        distance = (dx + dy + dz)
+        if (dx <= 0) and (dy <= 0) and (dz <= 0):
+            distance = min(dx**2, dy**2, dz**2)   #punto interno alla bounding box
+        else:
+            Dx = max(dx, 0)
+            Dy = max(dy, 0)
+            Dz = max(dz, 0)
+            distance = (Dx**2 + Dy**2 + Dz**2)   #punto esterno alla bounding box
+
 
         return distance
 

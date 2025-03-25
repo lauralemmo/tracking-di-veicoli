@@ -71,7 +71,7 @@ class BoundingBox2:
             (0.1, np.nanmax(tabella['z']) - np.nanmin(tabella['z']))  # Altezza
         ]
         print("bounds = ", bounds)
-        result = minimize(self.sommatoria, parametriDaOttimizzare, args=(tabella,), method='L-BFGS-B', bounds=bounds, options={'ftol': 1e-3, 'gtol': 1e-3, 'maxiter': 200, 'maxfun': 200})
+        result = minimize(self.sommatoria, parametriDaOttimizzare, args=(tabella,), method='L-BFGS-B', bounds=bounds, options={'ftol': 1e-3, 'gtol': 1e-3, 'maxiter': 300, 'maxfun': 300})
 
         print("valore funzione obiettivo: ", result.fun)
         print("distanza media da ogni punto: ", result.fun / i)

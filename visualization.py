@@ -181,3 +181,27 @@ def visualize2(csv_file, parametri):
     ))
 
     fig.show()
+
+
+
+def visualizePC(csv_file):
+    # Caricamento dati
+    df = pd.read_csv(csv_file)
+
+    # Crea la nuvola di punti
+    nuvola_punti = go.Scatter3d(
+        x=df['x'], y=df['y'], z=df['z'],
+        mode='markers',
+        marker=dict(size=3, color=df['z'], colorscale='rainbow', opacity=0.8)
+    )
+
+    # Disegna il grafico
+    fig = go.Figure(data=[nuvola_punti])
+    fig.update_layout(scene=dict(
+        xaxis_title='X',
+        yaxis_title='Y',
+        zaxis_title='Z',
+        aspectmode='data'  # Mantiene le proporzioni corrette
+    ))
+
+    fig.show()

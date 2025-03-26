@@ -26,13 +26,13 @@ class BoundingBox2:
         dy = abs(y2[1]) - w / 2
         dz = abs(y2[2]) - h / 2
 
-        if (dx <= 0) and (dy <= 0) and (dz <= 0):
-            distance = min(dx**2, dy**2, dz**2)   #punto interno alla bounding box
-        else:
+        if (dx <= 0) and (dy <= 0) and (dz <= 0):  #punto interno alla bounding box
+            distance = min(dx**2, dy**2, dz**2)
+        else:  #punto esterno alla bounding box
             Dx = max(dx, 0)
             Dy = max(dy, 0)
             Dz = max(dz, 0)
-            distance = (Dx**2 + Dy**2 + Dz**2)   #punto esterno alla bounding box
+            distance = (Dx**2 + Dy**2 + Dz**2)
 
 
         return distance
@@ -71,7 +71,8 @@ class BoundingBox2:
             (0.1, np.nanmax(tabella['z']) - np.nanmin(tabella['z']))  # Altezza
         ]
         print("bounds = ", bounds)
-        result = minimize(self.sommatoria, parametriDaOttimizzare, args=(tabella,), method='L-BFGS-B', bounds=bounds, options={'ftol': 1e-3, 'gtol': 1e-3, 'maxiter': 300, 'maxfun': 300})
+        result = minimize(self.sommatoria, parametriDaOttimizzare, args=(tabella,), method='L-BFGS-B',
+                          bounds=bounds, options={'ftol': 1e-3, 'gtol': 1e-3, 'maxiter': 300, 'maxfun': 300})
 
         print("valore funzione obiettivo: ", result.fun)
         print("distanza media da ogni punto: ", result.fun / i)

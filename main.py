@@ -2,6 +2,7 @@ import numpy as np
 import open3d as o3d
 import pandas as pd
 
+from plot import *
 from distanceBoundingBox import BoundingBox
 from distanceBoundingBox2 import BoundingBox2
 from visualization import visualize2
@@ -158,3 +159,12 @@ visualize2(csv_path, parametriOttimizzati2) #secondo metodo
 csv_path = "PointCloud_nSensori/PointCloud_traj_argo_50_AV_MercedesGLS580_scans50_s7_h2_5_10_v3_vehicle_time_1.csv"
 visualize2(csv_path, parametriOttimizzati3) #primo metodo
 visualize2(csv_path, parametriOttimizzati4) #secondo metodo
+
+
+
+
+#plotFObiettivo()
+
+
+
+#plotTradeOff()

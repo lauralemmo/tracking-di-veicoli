@@ -61,11 +61,13 @@ class BoundingBox2:
 
 
     def ottimizzazione(self, parametriDaOttimizzare, tabella, i):
+        o_init = parametriDaOttimizzare[3]  # Memorizziamo l'orientazione iniziale
+        max_orient_variation = 5
         bounds = [
             (np.nanmin(tabella['x']), np.nanmax(tabella['x'])),  # Limiti posizione X
             (np.nanmin(tabella['y']), np.nanmax(tabella['y'])),  # Limiti posizione Y
             (np.nanmin(tabella['z']), np.nanmax(tabella['z'])),  # Limiti posizione Z
-            (-np.pi, np.pi),  # Limiti angolo di rotazione
+            (o_init - max_orient_variation, o_init + max_orient_variation),  # Limiti angolo di rotazione
             (0.1, np.nanmax(tabella['x']) - np.nanmin(tabella['x'])),  # Lunghezza
             (0.1, np.nanmax(tabella['y']) - np.nanmin(tabella['y'])),  # Larghezza
             (0.1, np.nanmax(tabella['z']) - np.nanmin(tabella['z']))  # Altezza
@@ -79,3 +81,4 @@ class BoundingBox2:
         print("Valori ottimizzati:", result.x)
 
         return result.x
+        #return result.fun / i

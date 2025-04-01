@@ -66,7 +66,7 @@ class BoundingBox:
             (0.1, np.nanmax(tabella['y']) - np.nanmin(tabella['y'])),  # Larghezza
             (0.1, np.nanmax(tabella['z']) - np.nanmin(tabella['z']))  # Altezza
         ]
-        print("bounds = ", bounds)
+        #print("bounds = ", bounds)
         result = minimize(self.sommatoria, parametriDaOttimizzare, args=(tabella,), method='L-BFGS-B',
                           bounds=bounds, options={'ftol': 1e-3, 'gtol': 1e-3, 'maxiter': 300, 'maxfun': 300})
 
@@ -76,3 +76,26 @@ class BoundingBox:
 
         return result.x
         #return result.fun / i
+
+
+    def ottimizzazione2(self, parametriDaOttimizzare, tabella, r, i):
+        o_init = parametriDaOttimizzare[3]  # Memorizziamo l'orientazione iniziale
+        max_orient_variation = 5
+        bounds = [
+            (np.nanmin(tabella['x']), np.nanmax(tabella['x'])),  # Limiti posizione X
+            (np.nanmin(tabella['y']), np.nanmax(tabella['y'])),  # Limiti posizione Y
+            (np.nanmin(tabella['z']), np.nanmax(tabella['z'])),  # Limiti posizione Z
+            (o_init - max_orient_variation, o_init + max_orient_variation),  # Limiti angolo di rotazione
+            (0.1, np.nanmax(tabella['x']) - np.nanmin(tabella['x'])),  # Lunghezza
+            (0.1, np.nanmax(tabella['y']) - np.nanmin(tabella['y'])),  # Larghezza
+            (0.1, np.nanmax(tabella['z']) - np.nanmin(tabella['z']))  # Altezza
+        ]
+        #print("bounds = ", bounds)
+        result = minimize(self.sommatoria, parametriDaOttimizzare, args=(tabella, r,), method='L-BFGS-B',
+                          bounds=bounds, options={'ftol': 1e-3, 'gtol': 1e-3, 'maxiter': 300, 'maxfun': 300})
+
+        print("valore funzione obiettivo: ", result.fun)
+        print("distanza media da ogni punto: ", result.fun / i)
+        print("Valori ottimizzati:", result.x)
+
+        return result.x

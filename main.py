@@ -2,7 +2,7 @@ import numpy as np
 import open3d as o3d
 import pandas as pd
 
-from plot import *
+#from plot import *
 from distanceBoundingBox import BoundingBox
 from distanceBoundingBox2 import BoundingBox2
 from visualization import visualize2

@@ -3,7 +3,7 @@
 # import pandas as pd
 #
 #
-# def visualize(csv_file):
+# def visualize(csv_file):           #visualizzazioni con open3d
 #     # Caricare il file CSV
 #     df = pd.read_csv(csv_file)
 #
@@ -30,7 +30,7 @@
 # from mpl_toolkits.mplot3d.art3d import Poly3DCollection
 # from scipy.spatial.transform import Rotation as R
 #
-# def set_axes_equal(ax):
+# def set_axes_equal(ax):                #visualizzazioni con matplotlib
 #     # permette di visualizzare il plot con le proporzioni corrette
 #     x_limits = ax.get_xlim()
 #     y_limits = ax.get_ylim()
@@ -51,7 +51,7 @@
 #
 #
 #
-# def visualize2(csv_file, parametri):
+# def visualize2(csv_file, parametri):        #visualizzazioni con matplotlib
 #
 #     # Caricamento dati
 #     df = pd.read_csv(csv_file)
@@ -123,7 +123,7 @@ import numpy as np
 from scipy.spatial.transform import Rotation as R
 
 
-def visualize2(csv_file, parametri):
+def visualize2(csv_file, parametri):        #visualizzazioni con plotly
     # Caricamento dati
     df = pd.read_csv(csv_file)
 
@@ -184,7 +184,7 @@ def visualize2(csv_file, parametri):
 
 
 
-def visualizePC(csv_file):
+def visualizePC(csv_file):      #visualizzazioni con plotly, solo della point cloud senza bounding box
     # Caricamento dati
     df = pd.read_csv(csv_file)
 

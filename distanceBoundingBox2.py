@@ -32,7 +32,7 @@ class BoundingBox2:
             Dx = max(dx, 0)
             Dy = max(dy, 0)
             Dz = max(dz, 0)
-            distance = (Dx**2 + Dy**2 + Dz**2)
+            distance = np.sqrt(Dx**2 + Dy**2 + Dz**2)
 
 
         return distance
@@ -72,7 +72,6 @@ class BoundingBox2:
             (0.1, np.nanmax(tabella['y']) - np.nanmin(tabella['y'])),  # Larghezza
             (0.1, np.nanmax(tabella['z']) - np.nanmin(tabella['z']))  # Altezza
         ]
-        #print("bounds = ", bounds)
         result = minimize(self.sommatoria, parametriDaOttimizzare, args=(tabella,), method='L-BFGS-B',
                           bounds=bounds, options={'ftol': 1e-3, 'gtol': 1e-3, 'maxiter': 300, 'maxfun': 300})
 

@@ -1,8 +1,6 @@
-import numpy as np
-import open3d as o3d
-import pandas as pd
+#import open3d as o3d
 
-#from plot import *
+from plot import *
 from distanceBoundingBox import BoundingBox
 from distanceBoundingBox2 import BoundingBox2
 from visualization import visualize2
@@ -13,8 +11,6 @@ from visualization import visualize2
 #ottimizzazione con point cloud data da un solo sensore
 
 
-#cartellaA = Path("PointCloud_1Sensore")
-#for file in cartellaA.glob("*.csv"):
 tabellaA = pd.read_csv("PointCloud_1Sensore/PointCloud_traj_argo_50_AV_MercedesGLS580_scans50_s7_h2_5_10_vehicle_time_1.csv")
 coordinata_x = 0
 coordinata_y = 0
@@ -83,8 +79,6 @@ print("\n \n \n")
 #ottimizzazione con point cloud data da n sensori
 
 
-#cartellaB = Path("PointCloud_nSensori")
-#for file in cartellaB.glob("*.csv"):
 tabellaB = pd.read_csv("PointCloud_nSensori/PointCloud_traj_argo_50_AV_MercedesGLS580_scans50_s7_h2_5_10_v3_vehicle_time_1.csv")
 
 coordinata_x = 0
@@ -163,8 +157,8 @@ visualize2(csv_path, parametriOttimizzati4) #secondo metodo
 
 
 
-#plotFObiettivo()
+#plotFObiettivo()  #grafici funzione obiettivo
 
 
 
-#plotTradeOff()
+#plotTradeOff()  #grafici ottimizzazione multiobiettivo

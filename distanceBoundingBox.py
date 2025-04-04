@@ -66,7 +66,6 @@ class BoundingBox:
             (0.1, np.nanmax(tabella['y']) - np.nanmin(tabella['y'])),  # Larghezza
             (0.1, np.nanmax(tabella['z']) - np.nanmin(tabella['z']))  # Altezza
         ]
-        #print("bounds = ", bounds)
         result = minimize(self.sommatoria, parametriDaOttimizzare, args=(tabella,), method='L-BFGS-B',
                           bounds=bounds, options={'ftol': 1e-3, 'gtol': 1e-3, 'maxiter': 300, 'maxfun': 300})
 
@@ -78,7 +77,7 @@ class BoundingBox:
         #return result.fun / i
 
 
-    def ottimizzazione2(self, parametriDaOttimizzare, tabella, r, i):
+    def ottimizzazione2(self, parametriDaOttimizzare, tabella, r, i):     #serve con plotTradeOff
         o_init = parametriDaOttimizzare[3]  # Memorizziamo l'orientazione iniziale
         max_orient_variation = 5
         bounds = [
@@ -90,7 +89,6 @@ class BoundingBox:
             (0.1, np.nanmax(tabella['y']) - np.nanmin(tabella['y'])),  # Larghezza
             (0.1, np.nanmax(tabella['z']) - np.nanmin(tabella['z']))  # Altezza
         ]
-        #print("bounds = ", bounds)
         result = minimize(self.sommatoria, parametriDaOttimizzare, args=(tabella, r,), method='L-BFGS-B',
                           bounds=bounds, options={'ftol': 1e-3, 'gtol': 1e-3, 'maxiter': 300, 'maxfun': 300})
 
